@@ -10,6 +10,8 @@ plugins {
 group = "com.hjm"
 version = "0.0.1-SNAPSHOT"
 
+val kotestVersion = "5.6.2"
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
@@ -37,6 +39,12 @@ dependencies {
 
     // json
     implementation("org.json:json:20230618")
+
+    // kotest
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation ("io.kotest:kotest-property:$kotestVersion")
+    testImplementation("com.ninja-squad:springmockk:3.0.1")
 }
 
 configurations.forEach {
@@ -51,6 +59,10 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+    if (javaVersion.isCompatibleWith(JavaVersion.VERSION_17)) {
+        // See https://kotest.io/docs/next/extensions/system_extensions.html#system-environment.
+        jvmArgs("--add-opens=java.base/java.util=ALL-UNNAMED")
+    }
 }
