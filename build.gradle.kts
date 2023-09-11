@@ -5,6 +5,9 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
+    kotlin("plugin.jpa") version "1.7.22"
+    kotlin("kapt") version "1.7.10"
+    idea
 }
 
 group = "com.hjm"
@@ -45,6 +48,13 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
     testImplementation ("io.kotest:kotest-property:$kotestVersion")
     testImplementation("com.ninja-squad:springmockk:3.0.1")
+
+    // QueryDSL
+    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    implementation("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+
+    implementation("org.modelmapper:modelmapper:2.4.4")
 }
 
 configurations.forEach {
@@ -64,5 +74,15 @@ tasks.withType<Test>().configureEach {
     if (javaVersion.isCompatibleWith(JavaVersion.VERSION_17)) {
         // See https://kotest.io/docs/next/extensions/system_extensions.html#system-environment.
         jvmArgs("--add-opens=java.base/java.util=ALL-UNNAMED")
+    }
+}
+
+// QClass를 Intellij가 사용할 수 있도록 경로에 추가합니다
+// ./gradlew clean compileKotlin - QClass를 생성 명령어
+idea {
+    module {
+        val kaptMain = file("build/generated/source/kapt/main")
+        sourceDirs.add(kaptMain)
+        generatedSourceDirs.add(kaptMain)
     }
 }
