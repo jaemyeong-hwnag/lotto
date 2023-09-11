@@ -15,6 +15,7 @@ import org.springframework.web.context.request.ServletRequestAttributes
 @Aspect
 @Component
 @Order(1)
+// @todo 아이디 비밀번호 마스킹 처리
 class LoggingAspect {
     private val logger: Logger = LoggerFactory.getLogger(LoggingAspect::class.java)
 
