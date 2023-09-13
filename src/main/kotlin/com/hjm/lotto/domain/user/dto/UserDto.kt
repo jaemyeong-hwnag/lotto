@@ -1,4 +1,4 @@
-package com.hjm.lotto.application.dto
+package com.hjm.lotto.domain.user.dto
 
 import com.hjm.lotto.common.UseYn
 import java.util.*

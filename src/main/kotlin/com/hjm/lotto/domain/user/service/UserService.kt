@@ -1,8 +1,8 @@
-package com.hjm.lotto.application.service
+package com.hjm.lotto.domain.user.service
 
-import com.hjm.lotto.application.dto.UserDto
-import com.hjm.lotto.domain.model.User
-import com.hjm.lotto.domain.repository.UserRepository
+import com.hjm.lotto.domain.user.dto.UserDto
+import com.hjm.lotto.domain.user.entity.User
+import com.hjm.lotto.domain.user.repository.UserRepository
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 

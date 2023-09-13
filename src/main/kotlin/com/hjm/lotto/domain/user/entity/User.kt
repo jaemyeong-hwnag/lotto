@@ -1,4 +1,4 @@
-package com.hjm.lotto.domain.model
+package com.hjm.lotto.domain.user.entity
 
 import com.hjm.lotto.common.UseYn
 import jakarta.persistence.*
