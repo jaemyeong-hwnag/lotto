@@ -15,9 +15,9 @@ class User (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     val userId: Long,
-    @Column(name = "use_yn", nullable = false)
-    val nae: String,
-    @Column(name = "use_yn", nullable = false)
+    @Column(name = "user_name", nullable = false)
+    val userName: String,
+    @Column(name = "account", nullable = false)
     val account: String,
     @Column(name = "use_yn", nullable = true)
     val useYn: UseYn,
